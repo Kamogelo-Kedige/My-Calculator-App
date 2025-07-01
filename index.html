@@ -1,3 +1,9 @@
+<!--
+    Project: The calculator App
+    Author: Kamogelo Kedige
+    Date: June 2025
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,188 +11,183 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Link to external CSS file -->
     <link rel="stylesheet" href="style/style.css">
 
     <title>Calculator</title>
 </head>
 
 <body>
+    <main>
 
-    <section class="calculator">
+        <section class="calculator">
 
-        <table>
-            <caption>The Calculator App</caption> <!--Table semantic, explains what the table is about-->
+            <table>
+                <caption>Calculator🧮</caption>
 
-            <tbody>
-                <tr>
-                    <td colspan="5">
-                        <input id="inputBox" type="text" placeholder="0">
-                    </td>
-                </tr>
+                <tbody>
+                    <!-- Display input box for calculator output -->
+                    <tr>
+                        <td colspan="5">
+                            <input id="inputBox" type="text" placeholder="0">
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td class="number-button" onclick=numberBtnPressed(7)>7</td>
-                    <td class="number-button" onclick=numberBtnPressed(8)>8</td>
-                    <td class="number-button" onclick=numberBtnPressed(9)>9</td>
-                    <td class="clear-button" onclick=btnDELpressed()>DEL</td>
-                    <td class="clear-button" onclick=btnACPress()> AC</td>
+                    <!-- First row: numbers 7-9, DEL, AC -->
+                    <tr>
+                        <td class="number-button" onclick=numberBtnPressed(7)>7</td>
+                        <td class="number-button" onclick=numberBtnPressed(8)>8</td>
+                        <td class="number-button" onclick=numberBtnPressed(9)>9</td>
+                        <td class="clear-button" onclick=btnDELpressed()>DEL</td>
+                        <td class="clear-button" onclick=btnACPress()> AC</td>
+                    </tr>
 
+                    <!-- Second row: numbers 4-6, multiply, divide -->
+                    <tr>
+                        <td class="number-button" onclick=numberBtnPressed(4)>4</td>
+                        <td class="number-button" onclick=numberBtnPressed(5)>5</td>
+                        <td class="number-button" onclick=numberBtnPressed(6)>6</td>
+                        <td class="operator-button" onclick="btnOperatorPressed('x')"> &times; </td>
+                        <td class="operator-button" onclick="btnOperatorPressed('/')"> &divide; </td>
+                    </tr>
 
-                </tr>
+                    <!-- Third row: numbers 1-3, add, subtract -->
+                    <tr>
+                        <td class="number-button" onclick=numberBtnPressed(1)>1</td>
+                        <td class="number-button" onclick=numberBtnPressed(2)>2</td>
+                        <td class="number-button" onclick=numberBtnPressed(3)>3</td>
+                        <td class="operator-button" onclick="btnOperatorPressed('+')"> &plus; </td>
+                        <td class="operator-button" onclick="btnOperatorPressed('-')"> &minus; </td>
+                    </tr>
 
-                <tr>
-                    <td class="number-button" onclick=numberBtnPressed(4)>4</td>
-                    <td class="number-button" onclick=numberBtnPressed(5)>5</td>
-                    <td class="number-button" onclick=numberBtnPressed(6)>6</td>
-                    <td class="operator-button" onclick="btnOperatorPressed('x')"> &times; </td>
-                    <td class="operator-button" onclick="btnOperatorPressed('/')"> &divide; </td>
+                    <!-- Fourth row: 0, square, square root -->
+                    <tr>
+                        <td class="number-button" colspan="3" onclick=numberBtnPressed(0)>0</td>
+                        <td class="operator-button" onclick="btnOperatorPressed('square')">x&sup2;</td>
+                        <td class="operator-button" onclick="btnOperatorPressed('sqrt')">&radic;x</td>
+                    </tr>
 
+                    <!-- Fifth row: equals, ANS, dot, percent -->
+                    <tr>
+                        <td colspan="2" class="equals-button" onclick="btnEqualsPressed() "> &equals; </td>
+                        <td class="equals-button" onclick=buttonANSPressed()>ANS</td>
+                        <td class="operator-button" class="number-button" onclick="numberBtnPressed('.')">.</td>
+                        <td class="operator-button" onclick="btnOperatorPressed('%')">%</td>
+                    </tr>
 
-                </tr>
+                </tbody>
 
-                <tr>
+            </table>
+        </section>
+    </main>
 
-                    <td class="number-button" onclick=numberBtnPressed(1)>1</td>
-                    <td class="number-button" onclick=numberBtnPressed(2)>2</td>
-                    <td class="number-button" onclick=numberBtnPressed(3)>3</td>
-                    <td class="operator-button" onclick="btnOperatorPressed('+')"> &plus; </td>
-                    <td class="operator-button" onclick="btnOperatorPressed('-')"> &minus; </td>
+    <script>
+        // Stores the current value entered or calculated
+        var currentValue;
+        // Stores the current operator selected (+, -, etc.)
+        var currentOperator;
+        // Determines if the next input should start a new line (clear input)
+        var newLine = true;
+        // Stores the last computed answer for ANS button
+        var lastAnswer = 0;
 
-                </tr>
+        // Handles pressing of number buttons (0-9 and .)
+        function numberBtnPressed(button) {
+            var current = document.getElementById("inputBox").value;
 
-                <tr>
-                    <td class="number-button" colspan="3" onclick=numberBtnPressed(0)>0</td>
-                    <td class="operator-button" onclick="btnOperatorPressed('square')">x&sup2;</td>
-                    <td class="operator-button" onclick="btnOperatorPressed('sqrt')">&radic;x</td>
-
-                </tr>
-
-                <tr>
-                    <td colspan="2" class="equals-button" onclick="btnEqualsPressed() "> &equals; </td>
-                    <td class="equals-button" onclick=buttonANSPressed()>ANS</td>
-                    <td class="operator-button" class="number-button" onclick="numberBtnPressed('.')">.</td>
-                    <td class="operator-button" onclick="btnOperatorPressed('%')">%</td>
-
-
-                </tr>
-
-            </tbody>
-
-        </table>
-
-        <script>
-
-            var currentValue;
-            var currentOperator;
-            var newLine = true; // determines if next input should be on a new line
-            var lastAnswer = 0;
-
-            //Handles pressing of numbers to appear on input box
-            function numberBtnPressed(button) {
-                var current = document.getElementById("inputBox").value;
-
-                if (newLine) {
-                    document.getElementById("inputBox").value = button;
-                    newLine = false;
-
-                } else {
-
-                    if (button === ".") {
-                        // Split by math operators to isolate the last number
-                        var parts = current.split(/[\+\-\×\÷x]/);  // includes lowercase x as well
-
-                        var lastNumber = parts[parts.length - 1];
-
-                        // Prevent adding another dot if the last number already has one
-                        if (lastNumber.includes(".")) return;
-
-
-                    }
-                    // Append the button only after all checks pass
-                    document.getElementById("inputBox").value = current + button;
-
-                }
-
-            }
-
-            //Clears the inputbox, when AC is pressed
-            function btnACPress() {
-                document.getElementById("inputBox").value = "";
-                currentValue = 0;
-                newLine = true;
-            }
-
-            //Deletes once character from the input
-            function btnDELpressed() {
-                var current = document.getElementById("inputBox").value;
-
-                document.getElementById("inputBox").value = current.slice(0, -1);
-            }
-
-            //stores current value for arithmetic operations
-            function btnOperatorPressed(operator) {
-                currentOperator = operator;
-                // For binary operations, store the current value and wait for the next input.
-                // For unary operations (square, sqrt), currentValue will be used in equals.
-                currentValue = parseFloat(document.getElementById("inputBox").value);
-                newLine = true;
-            }
-
-            // calculates the result based on the stored operator
-            function btnEqualsPressed() {
-                var lastValue = parseFloat(document.getElementById("inputBox").value);
-                var total;
-
-                switch (currentOperator) {
-
-                    case "+":
-                        total = currentValue + lastValue;
-                        break;
-                    case "-":
-                        total = currentValue - lastValue;
-                        break;
-                    case "x":
-                        total = currentValue * lastValue;
-                        break;
-                    case "/":
-                        // Division by zero check
-                        if (lastValue === 0) {
-                            document.getElementById("inputBox").value = "Error: ÷ by 0";
-                            return;
-                        }
-                        total = currentValue / lastValue;
-                        break;
-                    case "%":
-                        total = (currentValue / 100) * lastValue;
-                        break;
-                    // For square and square root, operate on the stored value directly.
-                    case "square":
-                        total = currentValue * currentValue;
-                        break;
-                    case "sqrt":
-                        total = Math.sqrt(currentValue);
-                        break;
-                    default:
-                        total = lastValue;
-
-                }
-
-                document.getElementById("inputBox").value = total;
-                lastAnswer = total; // store computed result for ANS
-                currentValue = 0;
-                newLine = true;
-
-            }
-
-            //Last computed answer
-            function buttonANSPressed() {
-                document.getElementById("inputBox").value = lastAnswer;
+            if (newLine) {
+                // If starting new input, replace the input box value
+                document.getElementById("inputBox").value = button;
                 newLine = false;
+            } else {
+                if (button === ".") {
+                    // Prevent multiple decimals in a number
+                    var parts = current.split(/[\+\-\×\÷x]/);  // Split by operators
+                    var lastNumber = parts[parts.length - 1];
+                    if (lastNumber.includes(".")) return;
+                }
+                // Append the button value to the input box
+                document.getElementById("inputBox").value = current + button;
+            }
+        }
+
+        // Clears the input box and resets state when AC is pressed
+        function btnACPress() {
+            document.getElementById("inputBox").value = "";
+            currentValue = 0;
+            newLine = true;
+        }
+
+        // Deletes the last character from the input box
+        function btnDELpressed() {
+            var current = document.getElementById("inputBox").value;
+            document.getElementById("inputBox").value = current.slice(0, -1);
+        }
+
+        // Stores the current value and operator when an operator is pressed
+        function btnOperatorPressed(operator) {
+            currentOperator = operator;
+            // Store the current value for binary operations
+            currentValue = parseFloat(document.getElementById("inputBox").value);
+            newLine = true;
+        }
+
+        // Calculates the result based on the stored operator and values
+        function btnEqualsPressed() {
+            var lastValue = parseFloat(document.getElementById("inputBox").value);
+            var total;
+
+            switch (currentOperator) {
+                case "+":
+                    total = currentValue + lastValue;
+                    break;
+                case "-":
+                    total = currentValue - lastValue;
+                    break;
+                case "x":
+                    total = currentValue * lastValue;
+                    break;
+                case "/":
+                    // Division by zero check
+                    if (lastValue === 0) {
+                        document.getElementById("inputBox").value = "Error: ÷ by 0";
+                        return;
+                    }
+                    total = currentValue / lastValue;
+                    break;
+                case "%":
+                    // Percentage calculation
+                    total = (currentValue / 100) * lastValue;
+                    break;
+                case "square":
+                    // Square the current value
+                    total = currentValue * currentValue;
+                    break;
+                case "sqrt":
+                    // Square root of the current value
+                    total = Math.sqrt(currentValue);
+                    break;
+                default:
+                    // If no operator, just show the last value
+                    total = lastValue;
             }
 
-        </script>
+            // Display the result and update state
+            document.getElementById("inputBox").value = total;
+            lastAnswer = total;
+            currentValue = 0;
+            newLine = true;
+        }
 
-    </section>
+        // Inserts the last computed answer into the input box
+        function buttonANSPressed() {
+            document.getElementById("inputBox").value = lastAnswer;
+            newLine = false;
+        }
+
+    </script>
+
+
 
 </body>
 
