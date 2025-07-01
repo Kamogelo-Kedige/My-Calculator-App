@@ -7,7 +7,6 @@
 ## Features
 - ➕ Basic Arithmetic operations – Addition, subtraction, multiplication, and division
 - 🔣 Advanced Functions – Square root, squaring numbers, and percentages
-- calculating percentages
 - 🧠 ANS Feature – Stores and reuses the last calculated result
 - 🧼 AC & DEL Buttons – Clear all or remove individual digits
 - 📱 Responsive UI – Fully optimized for various screen sizes
