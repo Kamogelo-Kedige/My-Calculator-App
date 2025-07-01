@@ -1,6 +1,6 @@
 # Calculator App 🧮
 
-**Author:** Kamogelo Kedige 
+**Author:** Kamogelo Kedige  
 **Date Started:** June 2025  
 **Purpose:** A project built to showcase my ability to develop web applications using HTML, CSS and Javascript to build an intuitive, responsive calculator for everyday use. It highlights my understanding of core programming logic, event-driven input handling, and modern user interface design principles.
 
