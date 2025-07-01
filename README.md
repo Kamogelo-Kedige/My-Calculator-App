@@ -12,5 +12,9 @@
 - ANS feature to store the last calculated value
 - AC screen and DEL capabiliies, to clear screen and remove one number at a time
 
+## 🔗 Live Demo
+[View Calculator App](https://kamogelo-kedige.github.io/My-Calculator-App/)
+
+
 ## License  
 This project is licensed under the MIT License – see the [LICENSE](./LICENSE) file for details.
